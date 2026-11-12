@@ -1,0 +1,77 @@
+- case_id: TC_ORDER_008
+  title: 保存订单基本信息
+  tags: [order]
+  setup:
+    create_order:
+      consulateCity: Shanghai
+      appointmentType: Individual
+      applyNum: 1
+  request:
+    visaCategory: Schengen Visa
+    appointmentCategory: Normal
+    visaSubType: Tourism
+    departureDate: "2026-11-01"
+    expectedArrivalDate: "2026-11-02"
+    expectedDepartureDate: "2026-11-10"
+    travelPurpose: Tourism
+    destinationCountry: Spain
+  expected:
+    code: 0
+    data_type: bool
+
+- case_id: TC_ORDER_009
+  title: 保存订单-缺少必填字段
+  tags: [order]
+  setup:
+    create_order:
+      consulateCity: Shanghai
+      appointmentType: Individual
+      applyNum: 1
+  request:
+    visaCategory: Schengen Visa
+  expected:
+    code: 41008
+    msg_contains: 不能为空
+
+- case_id: TC_ORDER_104
+  title: 保存订单-预约类别VIP
+  tags: [order]
+  setup:
+    create_order:
+      consulateCity: Shanghai
+      appointmentType: Individual
+      applyNum: 1
+  request:
+    visaCategory: Schengen Visa
+    appointmentCategory: VIP
+    visaSubType: Tourism
+    departureDate: "2026-11-01"
+    expectedArrivalDate: "2026-11-02"
+    expectedDepartureDate: "2026-11-10"
+    travelPurpose: Tourism
+    destinationCountry: Spain
+  expected:
+    code: 0
+    data_type: bool
+
+- case_id: TC_ORDER_112
+  title: 保存订单-到达日晚于离开日
+  tags: [order]
+  setup:
+    create_order:
+      consulateCity: Shanghai
+      appointmentType: Individual
+      applyNum: 1
+  request:
+    visaCategory: Schengen Visa
+    appointmentCategory: Normal
+    visaSubType: Tourism
+    departureDate: "2026-11-01"
+    expectedArrivalDate: "2026-11-20"
+    expectedDepartureDate: "2026-11-10"
+    travelPurpose: Tourism
+    destinationCountry: Spain
+  expected:
+    code: 0
+    msg: null
+    data_type: bool

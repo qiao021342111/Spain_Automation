@@ -1,0 +1,55 @@
+---
+description: 西班牙接口自动化：用例生成、失败排查与最小改动规范
+globs: data/**/*.yaml,tests/**/*.py,api/**/*.py,Spain_TestDemo.md
+alwaysApply: false
+---
+
+# Spain API 自动化协作规范
+
+## 用例生成
+
+1. 接口定义以 **YApi MCP** 为准，业务说明以 **Spain_TestDemo.md** 为准。
+2. 只生成/修改：`data/**/*.yaml`、`tests/test_*.py`、`api/paths.py`、`api/spain_*.py`。
+3. **禁止**编写登录接口测试用例；登录由 `conftest.auto_login` 完成。
+4. **禁止**修改 `config/config.yaml` 中的账号密码、`base_url`（除非用户明确要求）。
+
+### YAML 模板
+
+```yaml
+- case_id: TC_XXX
+  title: 用例标题
+  tags: [smoke, order]   # 可选：smoke | order | submit
+  request: {}            # 或 setup + 业务参数
+  expected:
+    code: 0
+    data_type: int       # 可选：int | dict | bool
+```
+
+异常场景统一：
+
+```yaml
+  expected:
+    code: 500
+    msg: 服务繁忙
+```
+
+### 测试模板
+
+- 使用 `parametrized_cases("相对 data 路径")` 或现有 fixture。
+- 只调用 `api/` 封装方法，禁止在测试里直接 `requests`。
+- 断言使用 `assert_success` 或 `assert_busy`。
+
+## 失败排查
+
+1. 先读 `reports/last_failure.json` 与 `logs/api_test.log` 尾部。
+2. 区分：sessionId 鉴权、业务 code/msg、HTTP 404 环境未部署。
+3. 修复原则：**最小 diff**，优先改 YAML `expected` 或请求参数，再改 `api/` 字段映射。
+4. 修复后给出命令：`pytest -m smoke -v` 或 `-k case_id`。
+
+## 排查上下文脚本
+
+```bash
+python scripts/dump_failure_context.py
+```
+
+将输出用于分析，勿粘贴完整 sessionId 到外部不可信环境。

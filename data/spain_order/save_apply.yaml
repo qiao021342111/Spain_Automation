@@ -1,0 +1,66 @@
+- case_id: TC_ORDER_010
+  title: 新建申请人
+  tags: [order]
+  setup:
+    create_order:
+      consulateCity: Shanghai
+      appointmentType: Individual
+      applyNum: 1
+    create_apply_info: true
+  request:
+    surname: 张
+    name: 三
+    surnameEn: ZHANG
+    nameEn: SAN
+    birthDate: "1990-01-01 00:00:00"
+    gender: "1"
+    nationalityEn: China
+    signDate: "2020-01-01 00:00:00"
+    effectiveDate: "2030-01-01 00:00:00"
+    passportType: Ordinary
+    countryNum: CHN
+    mobile: "13800138000"
+    releaseCountryEn: China
+    signLandEn: HUNAN
+    birthLandEn: HUNAN
+    birthCountry: China
+    residenceCountry: China
+    maritalStatus: Single
+  expected:
+    code: 0
+    data_type: int
+
+- case_id: TC_ORDER_011
+  title: 更新已有申请人
+  tags: [order]
+  setup:
+    create_order:
+      consulateCity: Shanghai
+      appointmentType: Individual
+      applyNum: 1
+    create_apply_info: true
+    create_apply:
+      surname: 张
+      name: 三
+      surnameEn: ZHANG
+      nameEn: SAN
+      birthDate: "1990-01-01 00:00:00"
+      gender: "1"
+      nationalityEn: China
+      signDate: "2020-01-01 00:00:00"
+      effectiveDate: "2030-01-01 00:00:00"
+      passportType: Ordinary
+      countryNum: CHN
+      mobile: "13800138000"
+      releaseCountryEn: China
+      signLandEn: HUNAN
+      birthLandEn: HUNAN
+      birthCountry: China
+      residenceCountry: China
+      maritalStatus: Single
+  request:
+    surnameEn: ZHANG
+    nameEn: SANUPDATED
+  expected:
+    code: 0
+    data_type: int

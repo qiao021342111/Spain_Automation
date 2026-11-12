@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# 测试产物
+reports/
+logs/
+.pytest_cache/
+allure-report/
+
+# 敏感配置
+.env
+.cursor/mcp.json
+
+# 含外部模型密钥，不入库
+tests/test11.py
+
+# IDE
+.idea/
+.vscode/

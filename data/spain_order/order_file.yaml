@@ -1,0 +1,49 @@
+- case_id: TC_ORDER_018
+  title: 下载预约信
+  tags: [order]
+  request:
+    pageNum: 1
+    pageSize: 50
+    desc: true
+  match_status: INTERVIEW_SUCCESS
+
+- case_id: TC_ORDER_019
+  title: 导出名单表-默认筛选
+  tags: [order]
+  request:
+    pageNum: 1
+    pageSize: 10
+    desc: true
+  expected:
+    code: 0
+    data_type: bool
+
+- case_id: TC_ORDER_020
+  title: 批量下载文件
+  tags: [order]
+  request:
+    pageNum: 1
+    pageSize: 10
+    desc: true
+  expected:
+    code: 0
+    data_type: bool
+
+- case_id: TC_ORDER_021
+  title: 查询当前公司待支付订单角标
+  tags: [order]
+  expected:
+    code: 0
+    data_type: int
+
+- case_id: TC_ORDER_110
+  title: 待填写订单下载预约信
+  tags: [order]
+  setup:
+    create_order:
+      consulateCity: Shanghai
+      appointmentType: Individual
+      applyNum: 1
+  expected:
+    code: 400
+    msg: 暂无预约信可下载

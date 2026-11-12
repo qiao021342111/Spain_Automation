@@ -1,0 +1,88 @@
+- case_id: TC_SUBMIT_006
+  title: 待填写订单关闭托管
+  tags: [submit]
+  setup:
+    create_order:
+      consulateCity: Shanghai
+      appointmentType: Individual
+      applyNum: 1
+    save_order:
+      visaCategory: Schengen Visa
+      appointmentCategory: Normal
+      visaSubType: Tourism
+      departureDate: "2026-11-01"
+      expectedArrivalDate: "2026-11-02"
+      expectedDepartureDate: "2026-11-10"
+      travelPurpose: Tourism
+      destinationCountry: Spain
+  expected:
+    code: 400
+    msg: 仅托管预约中可关闭托管
+    data_is_null: true
+
+- case_id: TC_SUBMIT_007
+  title: 待填写订单确认付款
+  tags: [submit]
+  setup:
+    create_order:
+      consulateCity: Shanghai
+      appointmentType: Individual
+      applyNum: 1
+    save_order:
+      visaCategory: Schengen Visa
+      appointmentCategory: Normal
+      visaSubType: Tourism
+      departureDate: "2026-11-01"
+      expectedArrivalDate: "2026-11-02"
+      expectedDepartureDate: "2026-11-10"
+      travelPurpose: Tourism
+      destinationCountry: Spain
+  expected:
+    code: 400
+    msg: 当前订单状态不允许确认付款
+    data_is_null: true
+
+- case_id: TC_SUBMIT_008
+  title: 待填写订单查询最近支付查单任务
+  tags: [submit]
+  setup:
+    create_order:
+      consulateCity: Shanghai
+      appointmentType: Individual
+      applyNum: 1
+    save_order:
+      visaCategory: Schengen Visa
+      appointmentCategory: Normal
+      visaSubType: Tourism
+      departureDate: "2026-11-01"
+      expectedArrivalDate: "2026-11-02"
+      expectedDepartureDate: "2026-11-10"
+      travelPurpose: Tourism
+      destinationCountry: Spain
+  expected:
+    code: 0
+    data_is_null: true
+
+- case_id: TC_SUBMIT_009
+  title: 待填写订单修改期望时段
+  tags: [submit]
+  setup:
+    create_order:
+      consulateCity: Shanghai
+      appointmentType: Individual
+      applyNum: 1
+    save_order:
+      visaCategory: Schengen Visa
+      appointmentCategory: Normal
+      visaSubType: Tourism
+      departureDate: "2026-11-01"
+      expectedArrivalDate: "2026-11-02"
+      expectedDepartureDate: "2026-11-10"
+      travelPurpose: Tourism
+      destinationCountry: Spain
+  request:
+    appointmentDate: '[{"dateStart":"2026-11-08","dateEnd":"2026-11-08","timeStart":"09:00","timeEnd":"10:00"},{"dateStart":"2026-11-09","dateEnd":"2026-11-09","timeStart":"10:00","timeEnd":"11:00"},{"dateStart":"2026-11-10","dateEnd":"2026-11-10","timeStart":"11:00","timeEnd":"12:00"},{"dateStart":"2026-11-11","dateEnd":"2026-11-11","timeStart":"13:00","timeEnd":"14:00"},{"dateStart":"2026-11-12","dateEnd":"2026-11-12","timeStart":"14:00","timeEnd":"15:00"}]'
+  expected:
+    code: 400
+    msg: 仅托管预约中可修改期望时段
+    data_is_null: true

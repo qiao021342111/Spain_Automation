@@ -1,0 +1,98 @@
+- case_id: TC_ORDER_001
+  title: 创建个人订单
+  tags: [smoke, order]
+  request:
+    consulateCity: Shanghai
+    appointmentType: Individual
+    applyNum: 1
+  expected:
+    code: 0
+    data_type: int
+
+- case_id: TC_ORDER_002
+  title: 创建家庭订单
+  tags: [order]
+  request:
+    consulateCity: Beijing
+    appointmentType: Family
+    applyNum: 3
+  expected:
+    code: 0
+    data_type: int
+
+- case_id: TC_ORDER_005
+  title: 创建个人订单-广州领馆
+  tags: [order]
+  request:
+    consulateCity: Guangzhou
+    appointmentType: Individual
+    applyNum: 1
+  expected:
+    code: 0
+    data_type: int
+
+- case_id: TC_ORDER_006
+  title: 创建家庭订单-人数边界值6人
+  tags: [order]
+  request:
+    consulateCity: Shanghai
+    appointmentType: Family
+    applyNum: 6
+  expected:
+    code: 0
+    data_type: int
+
+- case_id: TC_ORDER_007
+  title: 创建订单-人数超限7人
+  tags: [order]
+  request:
+    consulateCity: Shanghai
+    appointmentType: Individual
+    applyNum: 7
+  expected:
+    code: 41008
+    msg: "[applyNum]:人数最多 6 人"
+
+- case_id: TC_ORDER_101
+  title: 创建订单-缺少领馆
+  tags: [order]
+  request:
+    appointmentType: Individual
+    applyNum: 1
+  expected:
+    code: 41008
+    msg: "[consulateCity]:领馆不能为空"
+
+- case_id: TC_ORDER_102
+  title: 创建订单-人数为0
+  tags: [order]
+  request:
+    consulateCity: Shanghai
+    appointmentType: Individual
+    applyNum: 0
+  expected:
+    code: 41008
+    msg: "[applyNum]:人数最少 1 人"
+
+- case_id: TC_ORDER_103
+  title: 创建家庭订单-人数超限7人
+  tags: [order]
+  request:
+    consulateCity: Shanghai
+    appointmentType: Family
+    applyNum: 7
+  expected:
+    code: 41008
+    msg: "[applyNum]:人数最多 6 人"
+
+- case_id: TC_ORDER_111
+  title: 创建订单-非法预约类型
+  tags: [order]
+  request:
+    consulateCity: Shanghai
+    appointmentType: Foo
+    applyNum: 1
+  expected:
+    code: 0
+    msg: null
+    data_type: int

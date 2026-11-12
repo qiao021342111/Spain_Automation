@@ -1,0 +1,21 @@
+- case_id: TC_SUBMIT_003
+  title: 待填写订单获取最新时间
+  tags: [submit]
+  setup:
+    create_order:
+      consulateCity: Shanghai
+      appointmentType: Individual
+      applyNum: 1
+    save_order:
+      visaCategory: Schengen Visa
+      appointmentCategory: Normal
+      visaSubType: Tourism
+      departureDate: "2026-11-01"
+      expectedArrivalDate: "2026-11-02"
+      expectedDepartureDate: "2026-11-10"
+      travelPurpose: Tourism
+      destinationCountry: Spain
+  expected:
+    code: 400
+    msg: 当前预约状态不支持获取时间,请刷新
+    data_is_null: true

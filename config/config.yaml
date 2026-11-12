@@ -1,0 +1,36 @@
+defaults:
+  timeout: 30
+  session_key: sessionId
+  log:
+    enabled: true
+    level: INFO
+    dir: logs
+
+environments:
+  test:
+    base_url: http://visas-api.qa.visaapp6.com
+    login_api: /companyOperator/login
+    login_request:
+      type: WEB
+      loginDevice: PC
+      mobileAreaCode: "86"
+      source: 0
+      verificationCode: ""
+    accounts:
+      default:
+        login_account: "15639413969"
+        login_password: "qiao123456"
+
+  prod:
+    base_url: http://visas-api.visaapp6.com
+    login_api: /companyOperator/login
+    login_request:
+      type: WEB
+      loginDevice: PC
+      mobileAreaCode: "86"
+      source: 0
+      verificationCode: ""
+    accounts:
+      default:
+        login_account: "${PROD_LOGIN_ACCOUNT}"
+        login_password: "${PROD_PASSWORD}"

@@ -1,0 +1,17 @@
+- case_id: TC_ORDER_013
+  title: 获取已创建订单详情
+  tags: [smoke, order]
+  setup:
+    create_order:
+      consulateCity: Shanghai
+      appointmentType: Individual
+      applyNum: 1
+  expected:
+    code: 0
+    data_type: dict
+    orderStatus: WAIT_FILL
+    consulateCity: Shanghai
+    appointmentType: Individual
+    applyNum: 1
+    hosted: 0
+    appointmentDate: []

@@ -1,0 +1,36 @@
+- case_id: TC_ORDER_012
+  title: 删除申请人并重排序号
+  tags: [order]
+  setup:
+    create_order:
+      consulateCity: Beijing
+      appointmentType: Family
+      applyNum: 2
+  expected:
+    code: 0
+    data_type: bool
+
+- case_id: TC_ORDER_016
+  title: 获取申请人详情
+  tags: [order]
+  request:
+    pageNum: 1
+    pageSize: 10
+    applicantName: 张
+  expected:
+    code: 0
+    data_type: dict
+
+- case_id: TC_ORDER_017
+  title: 设置申请人位置
+  tags: [order]
+  setup:
+    create_order:
+      consulateCity: Beijing
+      appointmentType: Family
+      applyNum: 2
+  request:
+    position: 2
+  expected:
+    code: 0
+    data_type: bool

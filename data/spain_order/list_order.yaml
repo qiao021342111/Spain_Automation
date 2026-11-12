@@ -1,0 +1,99 @@
+- case_id: TC_ORDER_003
+  title: 查询订单列表-默认分页
+  tags: [smoke, order]
+  request:
+    pageNum: 1
+    pageSize: 10
+    desc: true
+  expected:
+    code: 0
+    data_type: dict
+
+- case_id: TC_ORDER_004
+  title: 查询订单列表-按预约类型筛选
+  tags: [order]
+  request:
+    pageNum: 1
+    pageSize: 10
+    appointmentType: Individual
+  expected:
+    code: 0
+    data_type: dict
+
+- case_id: TC_ORDER_014
+  title: 查询订单列表-按领馆筛选
+  tags: [order]
+  request:
+    pageNum: 1
+    pageSize: 10
+    consulateCity: Shanghai
+  expected:
+    code: 0
+    data_type: dict
+
+- case_id: TC_ORDER_015
+  title: 查询订单列表-按申请人姓名模糊搜索
+  tags: [order]
+  request:
+    pageNum: 1
+    pageSize: 10
+    applicantName: 张
+  expected:
+    code: 0
+    data_type: dict
+
+- case_id: TC_ORDER_105
+  title: 查询订单列表-按订单状态WAIT_FILL筛选
+  tags: [order]
+  request:
+    pageNum: 1
+    pageSize: 10
+    orderStatusList:
+      - WAIT_FILL
+  expected:
+    code: 0
+    data_type: dict
+
+- case_id: TC_ORDER_106
+  title: 查询订单列表-按护照号模糊搜索
+  tags: [order]
+  request:
+    pageNum: 1
+    pageSize: 10
+    passportNum: E890
+  expected:
+    code: 0
+    data_type: dict
+
+- case_id: TC_ORDER_107
+  title: 查询订单列表-手动预约
+  tags: [order]
+  request:
+    pageNum: 1
+    pageSize: 10
+    hosted: 0
+  expected:
+    code: 0
+    data_type: dict
+
+- case_id: TC_ORDER_108
+  title: 查询订单列表-托管预约
+  tags: [order]
+  request:
+    pageNum: 1
+    pageSize: 10
+    hosted: 1
+  expected:
+    code: 0
+    data_type: dict
+
+- case_id: TC_ORDER_109
+  title: 查询订单列表-按家庭预约类型筛选
+  tags: [order]
+  request:
+    pageNum: 1
+    pageSize: 20
+    appointmentType: Family
+  expected:
+    code: 0
+    data_type: dict
